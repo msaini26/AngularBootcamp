@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employees',
@@ -7,15 +8,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
-  employees:any;
+  employees$!: Observable<any>;
   constructor(private http:HttpClient) { 
 
   }
 
   ngOnInit(): void {
-    this.employees = this.http.get("http://localhost:3000/employees");
-    // console.log(this.employees);
-    
+    this.employees$ = this.http.get("http://localhost:3000/employees")
+      
   }
 
 }
